@@ -15,6 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+
 /**
  *
  * @author Tharindu
@@ -1980,8 +1985,92 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Email send successful");
+        /*
+        // Recipient's email ID needs to be mentioned.
+      String to = "ku.tharindu@gmail.com";
+
+      // Sender's email ID needs to be mentioned
+      String from = "700view@gmail.com";
+
+      // Assuming you are sending email from localhost
+      String host = "localhost";
+
+      // Get system properties
+      Properties properties = System.getProperties();
+
+      // Setup mail server
+      properties.setProperty("mail.smtp.host", host);
+
+      // Get the default Session object.
+      Session session = Session.getDefaultInstance(properties);
+
+      try {
+         // Create a default MimeMessage object.
+         MimeMessage message = new MimeMessage(session);
+
+         // Set From: header field of the header.
+         message.setFrom(new InternetAddress(from));
+
+         // Set To: header field of the header.
+         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+         // Set Subject: header field
+         message.setSubject("This is the Subject Line!");
+
+         // Now set the actual message
+         message.setText("This is actual message");
+
+         // Send message
+         Transport.send(message);
+         JOptionPane.showMessageDialog(this, "Email send successful");
+      } catch (MessagingException mex) {
+         //mex.printStackTrace();
+         JOptionPane.showMessageDialog(this, "Something went wrong email send unsuccessful");
+          System.out.println(mex);
+      } */
+    
+        try{
+            String host ="smtp.gmail.com" ;
+            String user = "700view@gmail.com";
+            String pass = "hambuger";
+            String to = "ku.tharindu@gmail.com";
+            String from = "700view@gmail.com";
+            String subject = "sample message from java";
+            String messageText = "Your Is Test Email :";
+            boolean sessionDebug = false;
+
+            Properties props = System.getProperties();
+
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(to)};
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject); msg.setSentDate(new Date());
+            msg.setText(messageText);
+
+           Transport transport=mailSession.getTransport("smtp");
+           transport.connect(host, user, pass);
+           transport.sendMessage(msg, msg.getAllRecipients());
+           transport.close();
+           System.out.println("message send successfully");
+        }catch(MessagingException ex)
+        {
+            System.out.println(ex);
+        }
+
+    
+
+
+        
     }//GEN-LAST:event_jButton21ActionPerformed
 
     /**
