@@ -1985,50 +1985,7 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        /*
-        // Recipient's email ID needs to be mentioned.
-      String to = "ku.tharindu@gmail.com";
-
-      // Sender's email ID needs to be mentioned
-      String from = "700view@gmail.com";
-
-      // Assuming you are sending email from localhost
-      String host = "localhost";
-
-      // Get system properties
-      Properties properties = System.getProperties();
-
-      // Setup mail server
-      properties.setProperty("mail.smtp.host", host);
-
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
-
-      try {
-         // Create a default MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
-
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
-
-         // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-         // Set Subject: header field
-         message.setSubject("This is the Subject Line!");
-
-         // Now set the actual message
-         message.setText("This is actual message");
-
-         // Send message
-         Transport.send(message);
-         JOptionPane.showMessageDialog(this, "Email send successful");
-      } catch (MessagingException mex) {
-         //mex.printStackTrace();
-         JOptionPane.showMessageDialog(this, "Something went wrong email send unsuccessful");
-          System.out.println(mex);
-      } */
-    
+            
         try{
             String host ="smtp.gmail.com" ;
             String user = "700view@gmail.com";
@@ -2042,7 +1999,7 @@ public class MainPage extends javax.swing.JFrame {
             Properties props = System.getProperties();
 
             props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.ssl.trust", host);
             props.put("mail.smtp.port", "587");
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.required", "true");
@@ -2061,10 +2018,11 @@ public class MainPage extends javax.swing.JFrame {
            transport.connect(host, user, pass);
            transport.sendMessage(msg, msg.getAllRecipients());
            transport.close();
-           System.out.println("message send successfully");
+           JOptionPane.showMessageDialog(enrolment, "Email send successful");
         }catch(MessagingException ex)
         {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(enrolment, "something went wrong!\nemail send unsuccessful");
         }
 
     
