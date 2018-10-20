@@ -6,4 +6,4 @@ add the relevent libraries
 You can run the project
 
 Hi
-than you
+thank you
