@@ -5,6 +5,4 @@ Add in to your java project
 add the relevent libraries 
 You can run the project
 
-Hi
-thank you
-project
+
